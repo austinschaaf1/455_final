@@ -26,7 +26,10 @@ class LOGIN(QMainWindow): #INDEX = 0
 class WELCOME(QDialog):  #INDEX = 1
     def __init__(self):
         super(WELCOME, self).__init__()
-        loadUi("UI\welcome.ui",self)
+        try:
+            loadUi("UI\welcome.ui",self)
+        except:
+            loadUi("UI/welcome.ui",self)
         self.returnToLogin.clicked.connect(self.gotoScreen2)
         self.compair1.clicked.connect(self.gotoCompair)
     def gotoScreen2(self):
@@ -42,7 +45,10 @@ class WELCOME(QDialog):  #INDEX = 1
 class COMPAIR(QDialog):  #INDEX = 2
     def __init__(self):
         super(COMPAIR, self).__init__()
-        loadUi("UI\compare.ui",self)
+        try:
+            loadUi("UI\compare.ui",self)
+        except:
+            loadUi("UI/compare.ui",self)
         self.backToList.clicked.connect(self.gotoWelcome)
  
     def gotoWelcome(self):
@@ -52,7 +58,10 @@ class COMPAIR(QDialog):  #INDEX = 2
 class CREATE(QDialog):  #INDEX = 3
     def __init__(self):
         super(CREATE, self).__init__()
-        loadUi("UI\create_account.ui",self)
+        try:
+            loadUi("UI\create_account.ui",self)
+        except:
+            loadUi("UI/create_account.ui",self)
         self.welcomeButton.clicked.connect(self.gotoWelcome)
  
     def gotoWelcome(self):
