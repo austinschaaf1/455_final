@@ -11,26 +11,54 @@ from PyQt5.uic import loadUi
 # pip install pyqt5-tools
 ## open designer by searching designer on search bar
 
-class LOGIN(QMainWindow):
+class LOGIN(QMainWindow): #INDEX = 0
     def __init__(self):
         super(LOGIN,self).__init__()
         loadUi("UI\login.ui",self)
         self.loginButton.clicked.connect(self.gotoScreen2)
+        self.createAccountButton.clicked.connect(self.gotoCreateAccount)
         
-        
-
     def gotoScreen2(self):
-        widget.setCurrentIndex(widget.currentIndex() + 1)
+        widget.setCurrentIndex(1)
+    def gotoCreateAccount(self):
+        widget.setCurrentIndex(3)
 
-class WELCOME(QDialog):
+class WELCOME(QDialog):  #INDEX = 1
     def __init__(self):
         super(WELCOME, self).__init__()
         loadUi("UI\welcome.ui",self)
         self.returnToLogin.clicked.connect(self.gotoScreen2)
+        self.compair1.clicked.connect(self.gotoCompair)
     def gotoScreen2(self):
         screen = WELCOME()
         widget.addWidget(screen)
-        widget.setCurrentIndex(widget.currentIndex() - 1)
+        widget.setCurrentIndex(0)
+
+    def gotoCompair(self):
+        screen = WELCOME()
+        widget.addWidget(screen)
+        widget.setCurrentIndex(2)
+
+class COMPAIR(QDialog):  #INDEX = 2
+    def __init__(self):
+        super(COMPAIR, self).__init__()
+        loadUi("UI\compare.ui",self)
+        self.backToList.clicked.connect(self.gotoWelcome)
+ 
+    def gotoWelcome(self):
+        screen = COMPAIR()
+        widget.addWidget(screen)
+        widget.setCurrentIndex(1)
+class CREATE(QDialog):  #INDEX = 3
+    def __init__(self):
+        super(CREATE, self).__init__()
+        loadUi("UI\create_account.ui",self)
+        self.welcomeButton.clicked.connect(self.gotoWelcome)
+ 
+    def gotoWelcome(self):
+        screen = CREATE()
+        widget.addWidget(screen)
+        widget.setCurrentIndex(1)
 
 
 
@@ -40,10 +68,14 @@ app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget() #shows the windows
 login = LOGIN()
 welcome = WELCOME()
+compair = COMPAIR()
+create = CREATE()
 
 
 widget.addWidget(login)
 widget.addWidget(welcome)
+widget.addWidget(compair)
+widget.addWidget(create)
 
 widget.setFixedHeight(600)
 widget.setFixedWidth(800)
