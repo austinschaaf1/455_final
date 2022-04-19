@@ -120,6 +120,19 @@
      <string>...</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="createAccountButton">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>320</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>create account</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
