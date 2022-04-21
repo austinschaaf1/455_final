@@ -15,6 +15,10 @@ class LOGIN(QMainWindow): #INDEX = 0
     def __init__(self):
         super(LOGIN,self).__init__()
         loadUi("UI\login.ui",self)
+        try:
+            loadUi("UI\login.ui",self)
+        except:
+            loadUi("UI/login.ui",self)
         self.loginButton.clicked.connect(self.gotoScreen2)
         self.createAccountButton.clicked.connect(self.gotoCreateAccount)
         
