@@ -255,6 +255,32 @@
     <string>Compair</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="stockSearchButton">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>480</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>search stock</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="keywordSearchButton">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>480</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>search keyword</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
