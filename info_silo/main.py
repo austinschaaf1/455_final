@@ -21,11 +21,14 @@ class LOGIN(QMainWindow): #INDEX = 0
             loadUi("UI/login.ui",self)
         self.loginButton.clicked.connect(self.gotoScreen2)
         self.createAccountButton.clicked.connect(self.gotoCreateAccount)
+        self.keywordManagerButton.clicked.connect(self.gotoKeywordManager)
         
     def gotoScreen2(self):
         widget.setCurrentIndex(1)
     def gotoCreateAccount(self):
         widget.setCurrentIndex(3)
+    def gotoKeywordManager(self):
+        widget.setCurrentIndex(4)
 
 class WELCOME(QDialog):  #INDEX = 1
     def __init__(self):
@@ -59,6 +62,7 @@ class COMPAIR(QDialog):  #INDEX = 2
         screen = COMPAIR()
         widget.addWidget(screen)
         widget.setCurrentIndex(1)
+
 class CREATE(QDialog):  #INDEX = 3
     def __init__(self):
         super(CREATE, self).__init__()
@@ -74,6 +78,21 @@ class CREATE(QDialog):  #INDEX = 3
         widget.setCurrentIndex(1)
 
 
+class KEYWORD(QDialog):  #INDEX = 4
+    def __init__(self):
+        super(KEYWORD, self).__init__()
+        try:
+            loadUi("UI\keyword_manager.ui",self)
+        except:
+            loadUi("UI/keyword_manager.ui",self)
+        self.Welcome.clicked.connect(self.gotoWelcome)
+ 
+    def gotoWelcome(self):
+        screen = KEYWORD()
+        widget.addWidget(screen)
+        widget.setCurrentIndex(1)
+
+
 
 
 #main
@@ -83,12 +102,15 @@ login = LOGIN()
 welcome = WELCOME()
 compair = COMPAIR()
 create = CREATE()
+keyword_manager = KEYWORD()
 
 
 widget.addWidget(login)
 widget.addWidget(welcome)
 widget.addWidget(compair)
 widget.addWidget(create)
+widget.addWidget(keyword_manager)
+
 
 widget.setFixedHeight(600)
 widget.setFixedWidth(800)
