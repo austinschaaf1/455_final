@@ -84,6 +84,7 @@ class COMPAIR(QDialog):  #INDEX = 2
         widget.setCurrentIndex(1)
 
 class CREATE(QDialog):  #INDEX = 3
+    ####Create account class
     def __init__(self,mySQL,db):
         super(CREATE, self).__init__()
         self.mySQL = mySQL
@@ -114,6 +115,8 @@ class CREATE(QDialog):  #INDEX = 3
             self.mySQL.execute(sql, val)
 
             self.db.commit()
+
+            # INSERT INTO Login (user_id, password, email) VALUES (userID, userPassword, userEmail);
 
 
             # password = self.pass_input.text()
@@ -152,12 +155,31 @@ class SEARCH_KEYWORD(QDialog):  #INDEX = 5
             loadUi("UI\keyword_search.ui",self)
         except:
             loadUi("UI/keyword_search.ui",self)
-        self.Welcome.clicked.connect(self.gotoWelcome)
+        #button clicks
+        self.goToKeywordManagerButton.clicked.connect(self.goToKeywordManager)
+        self.addKeywordButton.clicked.connect(self.addKeywordToFav)
+        self.requestKeywordButton.clicked.connect(self.requestKeyword)
  
-    def gotoWelcome(self):
+    def goToKeywordManager(self):
+        #Return to the keyword manager
         screen = KEYWORD(self.mySQL, self.db)
         widget.addWidget(screen)
         widget.setCurrentIndex(1)
+
+    def addKeywordToFav(self):
+        #Determine if keyword exists or not if it does add it to users interests and give conformation message
+        ###SQL needed
+        ## if select is not null
+            ##  SELECT * FROM keyword WHERE (keyword_name LIKE %userSearch%);
+            ##  INSERT INTO user_interest (user_interest_id, search_word_id, interest_type) VALUES (userID, keywordID, interestType);
+        pass
+    def requestKeyword(self):
+        #Determine if keyword exists if it does not add it to keyword managers list and give conformation message
+        ###SQL needed examples
+        # If select is null
+            ##  SELECT * FROM keyword WHERE (keyword_name LIKE %userSearch%);
+            ##  INSERT INTO pending_keyword (keyword, date_requested) VALUES (pendKeyword, currentDate); 
+        pass
 class SEARCH_STOCK(QDialog):  #INDEX = 6
     def __init__(self,mySQL,db):
         super(SEARCH_STOCK, self).__init__()
@@ -167,24 +189,32 @@ class SEARCH_STOCK(QDialog):  #INDEX = 6
             loadUi("UI\stock_search.ui",self)
         except:
             loadUi("UI/stock_search.ui",self)
-        self.Welcome.clicked.connect(self.gotoWelcome)
- 
-    def gotoWelcome(self):
+        #button clicks    
+        self.goToKeywordManagerButton.clicked.connect(self.goToKeywordManager)
+        self.addStockButton.clicked.connect(self.addStockToFav)
+
+    def goToKeywordManager(self):
+        #Return to the keyword manager
         screen = KEYWORD(self.mySQL, self.db)
         widget.addWidget(screen)
         widget.setCurrentIndex(1)
 
+    def addStockToFav(self):
+        #Determine if stock exists or not if it does add it to users interests and give conformation message
+        ###SQL needed
+        ## if select is not null
+            ##  SELECT * FROM stocks where (ticker LIKE ‘searchTicker%’);
+            ##  INSERT INTO user_interest (user_interest_id, search_word_id, interest_type) VALUES (userID, keywordID, interestType);
+        self.success_label.setText("Stock XX added successfully")
+        pass
 
 
-#db setup
+
+#Data Base connection
 HOST = "cs455project.csuy1zz16lbb.us-east-1.rds.amazonaws.com"
-
 DATABASE = "455 Project"
-
 USER = "admin"
-
 PASSWORD = "FLBbA3YWrg7PKA5"
-
 db_connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
 mySQL = db_connection.cursor() 
 print("Connected to: ", db_connection.get_server_info())

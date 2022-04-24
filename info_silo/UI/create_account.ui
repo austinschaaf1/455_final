@@ -89,24 +89,27 @@
         <widget class="QPushButton" name="welcomeButton">
          <property name="geometry">
           <rect>
-           <x>200</x>
-           <y>500</y>
+           <x>240</x>
+           <y>490</y>
            <width>211</width>
            <height>21</height>
           </rect>
          </property>
          <property name="text">
-          <string>Go to welcome</string>
+          <string>Go to welcome REMOVE</string>
          </property>
         </widget>
         <widget class="QLabel" name="label">
          <property name="geometry">
           <rect>
-           <x>270</x>
+           <x>230</x>
            <y>20</y>
-           <width>171</width>
-           <height>41</height>
+           <width>281</width>
+           <height>51</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -115,16 +118,16 @@
           <enum>QFrame::Plain</enum>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Create Account&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; font-weight:600; color:#000008;&quot;&gt;Create Account&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="nameInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>142</x>
            <y>130</y>
-           <width>113</width>
-           <height>20</height>
+           <width>151</width>
+           <height>31</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -134,14 +137,17 @@
         <widget class="QLabel" name="label_2">
          <property name="geometry">
           <rect>
-           <x>180</x>
-           <y>110</y>
-           <width>47</width>
-           <height>13</height>
+           <x>140</x>
+           <y>100</y>
+           <width>61</width>
+           <height>31</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
+         </property>
          <property name="text">
-          <string>name</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#000004;&quot;&gt;Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="emailInput">
@@ -149,31 +155,34 @@
           <rect>
            <x>420</x>
            <y>130</y>
-           <width>113</width>
-           <height>20</height>
+           <width>141</width>
+           <height>31</height>
           </rect>
          </property>
         </widget>
         <widget class="QLabel" name="label_3">
          <property name="geometry">
           <rect>
-           <x>430</x>
-           <y>110</y>
-           <width>47</width>
-           <height>13</height>
+           <x>420</x>
+           <y>100</y>
+           <width>61</width>
+           <height>31</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
+         </property>
          <property name="text">
-          <string>Email</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#000008;&quot;&gt;Email&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="birthdayInput">
          <property name="geometry">
           <rect>
-           <x>180</x>
-           <y>190</y>
-           <width>113</width>
-           <height>20</height>
+           <x>140</x>
+           <y>210</y>
+           <width>151</width>
+           <height>31</height>
           </rect>
          </property>
         </widget>
@@ -181,19 +190,19 @@
          <property name="geometry">
           <rect>
            <x>420</x>
-           <y>190</y>
-           <width>113</width>
-           <height>20</height>
+           <y>210</y>
+           <width>141</width>
+           <height>31</height>
           </rect>
          </property>
         </widget>
         <widget class="QLineEdit" name="pass_input">
          <property name="geometry">
           <rect>
-           <x>180</x>
-           <y>270</y>
-           <width>113</width>
-           <height>20</height>
+           <x>140</x>
+           <y>300</y>
+           <width>151</width>
+           <height>31</height>
           </rect>
          </property>
         </widget>
@@ -201,49 +210,58 @@
          <property name="geometry">
           <rect>
            <x>420</x>
-           <y>280</y>
-           <width>113</width>
-           <height>20</height>
+           <y>300</y>
+           <width>141</width>
+           <height>31</height>
           </rect>
          </property>
         </widget>
         <widget class="QLabel" name="label_4">
          <property name="geometry">
           <rect>
-           <x>180</x>
-           <y>170</y>
-           <width>47</width>
-           <height>13</height>
+           <x>140</x>
+           <y>180</y>
+           <width>81</width>
+           <height>31</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
+         </property>
          <property name="text">
-          <string>Birthday</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#00000f;&quot;&gt;Birthday&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_5">
          <property name="geometry">
           <rect>
-           <x>180</x>
-           <y>250</y>
-           <width>61</width>
-           <height>16</height>
+           <x>140</x>
+           <y>260</y>
+           <width>91</width>
+           <height>31</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
+         </property>
          <property name="text">
-          <string>Password</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#000009;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_6">
          <property name="geometry">
           <rect>
            <x>420</x>
-           <y>170</y>
-           <width>101</width>
-           <height>16</height>
+           <y>180</y>
+           <width>181</width>
+           <height>31</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
+         </property>
          <property name="text">
-          <string>MemberShip Level</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#00000c;&quot;&gt;MemberShip Level&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_7">
@@ -251,22 +269,32 @@
           <rect>
            <x>420</x>
            <y>260</y>
-           <width>91</width>
-           <height>16</height>
+           <width>171</width>
+           <height>21</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background: none;</string>
+         </property>
          <property name="text">
-          <string>Confirm Password</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#000006;&quot;&gt;Confirm Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QPushButton" name="create_account">
          <property name="geometry">
           <rect>
-           <x>270</x>
-           <y>380</y>
-           <width>75</width>
-           <height>23</height>
+           <x>260</x>
+           <y>370</y>
+           <width>181</width>
+           <height>51</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.813, y2:0.880455, stop:0 rgba(255, 170, 255, 255), stop:0.153409 rgba(205, 156, 255, 255), stop:0.852273 rgba(170, 85, 255, 255));
+	color: rgb(245, 235, 255);
+	border-radius: 10px;
+}</string>
          </property>
          <property name="text">
           <string>Create</string>
