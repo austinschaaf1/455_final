@@ -100,12 +100,31 @@ class CREATE(QDialog):  #INDEX = 3
         widget.addWidget(screen)
         widget.setCurrentIndex(1)
     def createAccount(self):
-        sql = "INSERT INTO keyword (keyword_dbkey, keyword_name) VALUES (%s, %s)"
-        val = ("John", "Highway 21")
+        email = self.emailInput.text()
+        sql = "SELECT * FROM logins WHERE email=%s"
+        val = (email,)
         self.mySQL.execute(sql, val)
+        exists = self.mySQL.fetchall()
+        if len(exists) == 0:
+            name = self.nameInput.text()
+            bday = self.birthdayInput.text()
+            memLevel = self.membership_input.text()
+            sql = "INSERT INTO user_data (user_name, bday, membership_level) VALUES (%s, %s,%s)"
+            val = (name, bday,memLevel)
+            self.mySQL.execute(sql, val)
 
-        self.db.commit()
-        print(self.nameInput.text())
+            self.db.commit()
+
+
+            # password = self.pass_input.text()
+            # sql = "INSERT INTO logins (user_password, email) VALUES (%s, %s)"
+            # val = (password, email)
+            # self.mySQL.execute(sql, val)
+
+            # self.db.commit()
+            pass
+        else:
+            pass
 
 
 class KEYWORD(QDialog):  #INDEX = 4
