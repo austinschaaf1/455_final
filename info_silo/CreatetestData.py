@@ -98,4 +98,4 @@ def createUsers(mydb, mycursor):
 
 #createUsers(db_connection,mySQL)
 #createKeyword(db_connection,mySQL)
-createStock(db_connection,mySQL)
+#createStock(db_connection,mySQL)
