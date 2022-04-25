@@ -53,23 +53,13 @@ def createKeyword(mydb, mycursor):
         list1 = pytrend.get_historical_interest(data1, year_start=2022, month_start=1, day_start=1, hour_start=0, year_end=2022, month_end=2, day_end=1, hour_end=0, cat=0, geo='', gprop='', sleep=0)
         my_date = date(2022, 1, 1)
         for i in range(30):
-            #list1.values[i][0]
             my_date += timedelta(days=1)
            
             sql = "INSERT INTO searches_over_time (keyword,number_of_searches,date_time) VALUES (%s,%s,%s)"
             val = (keyword_data[j][0],list1.values[i][0],my_date,)
             mycursor.execute(sql, val)
             mydb.commit()
-    # #print(list1.values[0][0])
-    # print(list1.values)
-    # df.head(10)
-    
-    # for i in range(20):
-    #     mycursor = mydb.cursor()
 
-    #     sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
-    #     val = ("John", "Highway 21")
-    #     mycursor.execute(sql, val)
 def createStock(mydb, mycursor):
     stockList = ["TSLA","GOOGL","AMZN","TSM","NVDA","UNH","PG","CNI","BAC","KO"]
     for i in range(len(stockList)):
@@ -82,8 +72,7 @@ def createStock(mydb, mycursor):
         mycursor.execute(sql, val)
         mydb.commit()
         price = msft.history(start="2022-01-01",end="2022-01-29")
-        #print(price['Close'][0])
-        #print(price['Close'])
+
         val = str(price['Close'])
         val = val.split()
         val.pop(0)
@@ -91,7 +80,6 @@ def createStock(mydb, mycursor):
         val.pop(len(val)-1)
         val.pop(len(val)-1)
         val.pop(len(val)-1)
-        print(val)
         for j in range(0,(len(price)-2),2):
             sql = "INSERT INTO prices_over_time (ticker, PRICE, date_time) VALUES (%s, %s,%s)"
             val2 = (stockList[i], val[j+1],val[j])

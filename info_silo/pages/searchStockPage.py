@@ -24,16 +24,16 @@ class SEARCH_STOCK(QDialog):  # INDEX = 6
         except:
             loadUi("UI/stock_search.ui", self)
         # button clicks
-        self.goToKeywordManagerButton.clicked.connect(self.goToKeywordManager)
+        self.goToKeywordManagerButton.clicked.connect(self.goToWelcome)
         self.addStockButton.clicked.connect(self.addStockToFav)
     def setWidget(self, wid):
         #need to set up in order to get communication working
         self.widget = wid
-    def goToKeywordManager(self):
+    def goToWelcome(self):
         # Return to the keyword manager
         screen = KEYWORD(self.mySQL, self.db,self.widget)
         self.widget.addWidget(screen)
-        self.widget.setCurrentIndex(4)
+        self.widget.setCurrentIndex(1)
 
     def addStockToFav(self):
         # Determine if stock exists or not if it does add it to users interests and give conformation message
