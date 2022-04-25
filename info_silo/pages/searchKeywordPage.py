@@ -25,17 +25,17 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
         except:
             loadUi("UI/keyword_search.ui", self)
         # button clicks
-        self.goToKeywordManagerButton.clicked.connect(self.goToWelcome)
+        self.goToKeywordManagerButton.clicked.connect(self.goToManager)
         self.addKeywordButton.clicked.connect(self.addKeywordToFav)
         self.requestKeywordButton.clicked.connect(self.requestKeyword)
     def setWidget(self, wid):
         #need to set up in order to get communication working
         self.widget = wid
-    def goToWelcome(self):
+    def goToManager(self):
         # Return to the keyword manager
         screen = KEYWORD(self.mySQL, self.db,self.widget)
         self.widget.addWidget(screen)
-        self.widget.setCurrentIndex(1)
+        self.widget.setCurrentIndex(4)
 
     def addKeywordToFav(self):
         # Determine if keyword exists or not if it does add it to users interests and give conformation message
