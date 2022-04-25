@@ -228,7 +228,7 @@ p, li { white-space: pre-wrap; }
 }</string>
       </property>
       <property name="text">
-       <string>Keyword Manager</string>
+       <string>Welcome Page</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="requestKeywordInput">
@@ -244,6 +244,7 @@ p, li { white-space: pre-wrap; }
        <string>Enter Keyword</string>
       </property>
      </widget>
+     <zorder>requestKeywordInput</zorder>
      <zorder>frame</zorder>
      <zorder>line</zorder>
      <zorder>enterKeywordInput</zorder>
