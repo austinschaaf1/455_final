@@ -11,13 +11,13 @@ from mplwidget import MplWidget
 import numpy as np
 import random
 
-from pages.comparePage import COMPARE
-from pages.createAccountPage import CREATE
-from pages.keywordManagerPage import KEYWORD
-from pages.loginPage import LOGIN
-from pages.searchKeywordPage import SEARCH_KEYWORD
-from pages.searchStockPage import SEARCH_STOCK
-from pages.welcomePage import WELCOME
+from info_silo.pages.comparePage import COMPARE
+from info_silo.pages.createAccountPage import CREATE
+from info_silo.pages.keywordManagerPage import KEYWORD
+from info_silo.pages.loginPage import LOGIN
+from info_silo.pages.searchKeywordPage import SEARCH_KEYWORD
+from info_silo.pages.searchStockPage import SEARCH_STOCK
+from info_silo.pages.welcomePage import WELCOME
 
 # how to set up designer and qt 5
 ## https://www.youtube.com/watch?v=kxSuHyQfStA&t=0s
@@ -39,16 +39,16 @@ print("Connected to: ", db_connection.get_server_info())
 
 # Set up all windows
 app = QApplication(sys.argv)
-widget = QtWidgets.QStackedWidget() 
-login = LOGIN(mySQL, db_connection,widget)
-welcome = WELCOME(mySQL, db_connection,widget)
-compare = COMPARE(mySQL, db_connection,widget)
-create = CREATE(mySQL, db_connection,widget)
-keyword_manager = KEYWORD(mySQL, db_connection,widget)
-keywordSearch = SEARCH_KEYWORD(mySQL, db_connection,widget)
-stockSearch = SEARCH_STOCK(mySQL, db_connection,widget)
+widget = QtWidgets.QStackedWidget()
+login = LOGIN(mySQL, db_connection, widget)
+welcome = WELCOME(mySQL, db_connection, widget)
+compare = COMPARE(mySQL, db_connection, widget)
+create = CREATE(mySQL, db_connection, widget)
+keyword_manager = KEYWORD(mySQL, db_connection, widget)
+keywordSearch = SEARCH_KEYWORD(mySQL, db_connection, widget)
+stockSearch = SEARCH_STOCK(mySQL, db_connection, widget)
 
-#add widgets for page transitions
+# add widgets for page transitions
 widget.addWidget(login)
 widget.addWidget(welcome)
 widget.addWidget(compare)
@@ -57,7 +57,7 @@ widget.addWidget(keyword_manager)
 widget.addWidget(keywordSearch)
 widget.addWidget(stockSearch)
 
-#with all widgets created pass them to class
+# with all widgets created pass them to class
 login.setWidget(widget)
 welcome.setWidget(widget)
 compare.setWidget(widget)
@@ -66,7 +66,7 @@ keyword_manager.setWidget(widget)
 keywordSearch.setWidget(widget)
 stockSearch.setWidget(widget)
 
-#Set up sizes
+# Set up sizes
 widget.setFixedHeight(600)
 widget.setFixedWidth(800)
 widget.show()

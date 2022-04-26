@@ -10,11 +10,12 @@ from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as Navigati
 from mplwidget import MplWidget
 import numpy as np
 import random
-from pages.loginPage import LOGIN
-from pages.welcomePage import WELCOME
+from info_silo.pages.loginPage import LOGIN
+from info_silo.pages.welcomePage import WELCOME
+
 
 class KEYWORD(QDialog):  # INDEX = 4
-    def __init__(self, mySQL, db,widget):
+    def __init__(self, mySQL, db, widget):
         super(KEYWORD, self).__init__()
         self.mySQL = mySQL
         self.db = db
@@ -26,11 +27,13 @@ class KEYWORD(QDialog):  # INDEX = 4
         self.homeButton.clicked.connect(self.gotoWelcome)
         self.loadList()
         self.approveButton.clicked.connect(self.addToDB)
+
     def setWidget(self, wid):
-        #need to set up in order to get communication working
+        # need to set up in order to get communication working
         self.widget = wid
+
     def gotoWelcome(self):
-        screen = KEYWORD(self.mySQL, self.db,self.widget)
+        screen = WELCOME(self.mySQL, self.db, self.widget)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
 

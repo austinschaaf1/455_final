@@ -244,6 +244,26 @@ p, li { white-space: pre-wrap; }
        <string>Enter Keyword</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="homeButton">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>30</y>
+        <width>141</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.813, y2:0.880455, stop:0 rgba(255, 170, 255, 255), stop:0.153409 rgba(205, 156, 255, 255), stop:0.852273 rgba(170, 85, 255, 255));
+	color: rgb(245, 235, 255);
+	border-radius: 10px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Home</string>
+      </property>
+     </widget>
      <zorder>requestKeywordInput</zorder>
      <zorder>frame</zorder>
      <zorder>line</zorder>
@@ -253,6 +273,7 @@ p, li { white-space: pre-wrap; }
      <zorder>frame_2</zorder>
      <zorder>frame_3</zorder>
      <zorder>goToKeywordManagerButton</zorder>
+     <zorder>homeButton</zorder>
     </widget>
    </item>
   </layout>

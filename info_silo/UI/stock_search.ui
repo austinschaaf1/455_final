@@ -94,10 +94,10 @@
        <string>Add Stock to Favorite</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="goToKeywordManagerButton">
+     <widget class="QPushButton" name="homeButton">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>610</x>
         <y>20</y>
         <width>141</width>
         <height>51</height>
@@ -111,7 +111,7 @@
 }</string>
       </property>
       <property name="text">
-       <string>Keyword Manager</string>
+       <string>Home</string>
       </property>
      </widget>
      <widget class="QFrame" name="frame_2">
@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
        <string notr="true">background: none;</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#00000d;&quot;&gt;`&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>

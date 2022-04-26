@@ -10,9 +10,10 @@ from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as Navigati
 from mplwidget import MplWidget
 import numpy as np
 import random
-from pages.loginPage import LOGIN
-from pages.welcomePage import WELCOME
-from pages.keywordManagerPage import KEYWORD
+from info_silo.pages.loginPage import LOGIN
+from info_silo.pages.welcomePage import WELCOME
+from info_silo.pages.keywordManagerPage import KEYWORD
+
 class SEARCH_STOCK(QDialog):  # INDEX = 6
     def __init__(self, mySQL, db,widget):
         super(SEARCH_STOCK, self).__init__()
@@ -24,16 +25,16 @@ class SEARCH_STOCK(QDialog):  # INDEX = 6
         except:
             loadUi("UI/stock_search.ui", self)
         # button clicks
-        self.goToKeywordManagerButton.clicked.connect(self.goToKeyword)
+        self.homeButton.clicked.connect(self.gotoWelcome)
         self.addStockButton.clicked.connect(self.addStockToFav)
     def setWidget(self, wid):
         #need to set up in order to get communication working
         self.widget = wid
-    def goToKeyword(self):
-        # Return to the keyword manager
-        screen = KEYWORD(self.mySQL, self.db,self.widget)
+
+    def gotoWelcome(self):
+        screen = WELCOME(self.mySQL, self.db,self.widget)
         self.widget.addWidget(screen)
-        self.widget.setCurrentIndex(4)
+        self.widget.setCurrentIndex(1)
 
     def addStockToFav(self):
         # Determine if stock exists or not if it does add it to users interests and give conformation message

@@ -10,12 +10,13 @@ from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as Navigati
 from mplwidget import MplWidget
 import numpy as np
 import random
-from pages.loginPage import LOGIN
-from pages.welcomePage import WELCOME
-from pages.keywordManagerPage import KEYWORD
+from info_silo.pages.loginPage import LOGIN
+from info_silo.pages.welcomePage import WELCOME
+from info_silo.pages.keywordManagerPage import KEYWORD
+
 
 class SEARCH_KEYWORD(QDialog):  # INDEX = 5
-    def __init__(self, mySQL, db,widget):
+    def __init__(self, mySQL, db, widget):
         super(SEARCH_KEYWORD, self).__init__()
         self.mySQL = mySQL
         self.db = db
@@ -26,16 +27,24 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
             loadUi("UI/keyword_search.ui", self)
         # button clicks
         self.goToKeywordManagerButton.clicked.connect(self.goToManager)
+        self.homeButton.clicked.connect(self.gotoWelcome)
         self.addKeywordButton.clicked.connect(self.addKeywordToFav)
         self.requestKeywordButton.clicked.connect(self.requestKeyword)
+
     def setWidget(self, wid):
-        #need to set up in order to get communication working
+        # need to set up in order to get communication working
         self.widget = wid
+
     def goToManager(self):
         # Return to the keyword manager
-        screen = KEYWORD(self.mySQL, self.db,self.widget)
+        screen = KEYWORD(self.mySQL, self.db, self.widget)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(4)
+
+    def gotoWelcome(self):
+        screen = KEYWORD(self.mySQL, self.db, self.widget)
+        self.widget.addWidget(screen)
+        self.widget.setCurrentIndex(1)
 
     def addKeywordToFav(self):
         # Determine if keyword exists or not if it does add it to users interests and give conformation message
