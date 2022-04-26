@@ -264,6 +264,22 @@ p, li { white-space: pre-wrap; }
        <string>Home</string>
       </property>
      </widget>
+     <widget class="QLabel" name="success_label">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>295</y>
+        <width>691</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: none;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>requestKeywordInput</zorder>
      <zorder>frame</zorder>
      <zorder>line</zorder>
@@ -274,6 +290,7 @@ p, li { white-space: pre-wrap; }
      <zorder>frame_3</zorder>
      <zorder>goToKeywordManagerButton</zorder>
      <zorder>homeButton</zorder>
+     <zorder>success_label</zorder>
     </widget>
    </item>
   </layout>

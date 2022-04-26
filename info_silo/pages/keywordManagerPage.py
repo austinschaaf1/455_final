@@ -31,6 +31,7 @@ class KEYWORD(QDialog):  # INDEX = 4
         self.loadList()
         self.approveButton.clicked.connect(self.addToDB)
         self.rejectButton.clicked.connect(self.deleteRow)
+        self.reloadListB.clicked.connect(self.reloadList)
 
     def setWidget(self, wid):
         # need to set up in order to get communication working
@@ -42,12 +43,24 @@ class KEYWORD(QDialog):  # INDEX = 4
         self.widget.setCurrentIndex(1)
 
     def loadList(self):
+        ###pull in the list from database
         sql = "SELECT keyword FROM pending_keyword"
         self.mySQL.execute(sql)
         exists = self.mySQL.fetchall()
         for row in exists:
             self.keywordList.addItem(row[0])
-    def deleteRow(self):
+    
+    def reloadList(self):
+        ###clears the whole list then rebuilds it
+        self.keywordList.clear()
+        self.loadList()
+        message = "List has been reloaded!"
+        self.success_label.setText(message)
+        self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+        
+    def deleteRow(self,delete=True):
+        ### Delete a single item from the pending keyword table
+
         addKeyWordInput = self.keywordList.currentItem()
         itemName = addKeyWordInput.text()
         index = self.keywordList.currentRow()
@@ -56,36 +69,53 @@ class KEYWORD(QDialog):  # INDEX = 4
         self.mySQL.execute(sql, val)
         self.db.commit()
         self.keywordList.takeItem(index)
+        
+        ##If comming in from the reject button display a message
+        if delete == False:
+            message = itemName + " has been deleted from list!"
+            self.success_label.setText(message)
+            self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
 
     def addToDB(self):
+        ###add the new keyword to the database and search for it
+
         addKeyWordInput = self.keywordList.currentItem()
         sql = "SELECT * FROM keyword WHERE (keyword_name LIKE %s)"
         val = (addKeyWordInput.text(),)
         self.mySQL.execute(sql, val)
         keywordInfo = self.mySQL.fetchall()
-        if len(keywordInfo) == 0:
+
+        if len(keywordInfo) == 0:   ##Keyword not found in database add it
+
+            ####Insert the keyword into the keyword table
             sql = "INSERT INTO keyword (keyword_name) VALUES (%s)"
             val = (addKeyWordInput.text(),)
             self.mySQL.execute(sql, val)
             self.db.commit()
 
+            ##### Get the Keyword dbkey
             sql = "SELECT * FROM keyword WHERE (keyword_name LIKE %s)"
             val = (addKeyWordInput.text(),)
             self.mySQL.execute(sql, val)
             keywordInfo = self.mySQL.fetchall()
 
+            ####Load a month worth of searches
             pytrend = TrendReq()
             data1 = []
             data1.append(keywordInfo[0][1])
             list1 = pytrend.get_historical_interest(data1, year_start=2022, month_start=1, day_start=1, hour_start=0, year_end=2022, month_end=2, day_end=1, hour_end=0, cat=0, geo='', gprop='', sleep=0)
             my_date = date(2022, 1, 1)
-            for i in range(30):
 
+            for i in range(30):
+                ####Add a month worth of searches 
                 my_date += timedelta(days=1)
-            
                 sql = "INSERT INTO searches_over_time (keyword,number_of_searches,date_time) VALUES (%s,%s,%s)"
                 val = (keywordInfo[0][0],list1.values[i][0],my_date,)
                 self.mySQL.execute(sql, val)
                 self.db.commit()
 
-            self.deleteRow()
+            ######Display success message for databases   
+            message = addKeyWordInput.text() + " has been added to the database!"
+            self.success_label.setText(message)
+            self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+            self.deleteRow(True)

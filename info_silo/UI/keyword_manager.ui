@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>-40</y>
+     <y>0</y>
      <width>801</width>
      <height>641</height>
     </rect>
@@ -68,9 +68,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>40</y>
-      <width>251</width>
+      <x>100</x>
+      <y>10</y>
+      <width>461</width>
       <height>111</height>
      </rect>
     </property>
@@ -78,7 +78,7 @@
      <string notr="true">background: none;</string>
     </property>
     <property name="text">
-     <string>KEYWORD MANAGER</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;KEYWORD MANAGER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="rejectButton">
@@ -133,6 +133,58 @@
     <property name="styleSheet">
      <string notr="true">background: none; 
 font: 24pt &quot;.AppleSystemUIFont&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="success_label">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>440</y>
+      <width>541</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>110</y>
+      <width>411</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Note new keywords may take a couple of seconds to load&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reloadListB">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>360</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.813, y2:0.880455, stop:0 rgba(255, 170, 255, 255), stop:0.153409 rgba(205, 156, 255, 255), stop:0.852273 rgba(170, 85, 255, 255));
+	color: rgb(245, 235, 255);
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Reload List</string>
     </property>
    </widget>
   </widget>
