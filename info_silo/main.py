@@ -11,13 +11,13 @@ from mplwidget import MplWidget
 import numpy as np
 import random
 
-from info_silo.pages.comparePage import COMPARE
-from info_silo.pages.createAccountPage import CREATE
-from info_silo.pages.keywordManagerPage import KEYWORD
-from info_silo.pages.loginPage import LOGIN
-from info_silo.pages.searchKeywordPage import SEARCH_KEYWORD
-from info_silo.pages.searchStockPage import SEARCH_STOCK
-from info_silo.pages.welcomePage import WELCOME
+from pages.comparePage import COMPARE
+from pages.createAccountPage import CREATE
+from pages.keywordManagerPage import KEYWORD
+from pages.loginPage import LOGIN
+from pages.searchKeywordPage import SEARCH_KEYWORD
+from pages.searchStockPage import SEARCH_STOCK
+from pages.welcomePage import WELCOME
 
 # how to set up designer and qt 5
 ## https://www.youtube.com/watch?v=kxSuHyQfStA&t=0s
