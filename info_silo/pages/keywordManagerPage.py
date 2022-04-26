@@ -10,8 +10,8 @@ from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as Navigati
 from mplwidget import MplWidget
 import numpy as np
 import random
-from info_silo.pages.loginPage import LOGIN
-from info_silo.pages.welcomePage import WELCOME
+from pages.loginPage import LOGIN
+from pages.welcomePage import WELCOME
 
 
 class KEYWORD(QDialog):  # INDEX = 4
