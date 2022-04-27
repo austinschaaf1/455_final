@@ -26,7 +26,12 @@ class COMPARE(QDialog):  # INDEX = 2
         except:
             loadUi("UI/compare.ui", self)
         self.backToList.clicked.connect(self.gotoWelcome)
-        self.update_graph()
+        # self.update_graph()
+        self.loadStocksList()
+        self.loadKeywordList()
+
+        self.stocksList.itemClicked.connect(self.update_graph)
+        self.keywordsList.itemClicked.connect(self.update_graph)
 
     def setWidget(self, wid):
         # need to set up in order to get communication working
@@ -39,17 +44,58 @@ class COMPARE(QDialog):  # INDEX = 2
 
     def update_graph(self):
 
-        x1 = ([1, 2, 3, 4, 5, 6])
-        y1 = ([3, 5, 6, 8, 4, 7])
-        x2 = ([1, 2, 3, 4, 5, 6])
-        y2 = ([2, 4, 4, 7, 8, 9])
+        if (self.keywordsList.currentItem() is not None) and (self.stocksList.currentItem() is not None):
+            x1 = ([1, 2, 3, 4, 5])
+            x2 = ([1, 2, 3, 4, 5])
+            y1 = []
+            y2 = []
+
+            # Keyword Searches
+            sql = "SELECT k.keyword_name, searches_over_time.number_of_searches FROM searches_over_time" \
+                  " JOIN keyword k on k.keyword_dbkey = searches_over_time.keyword " \
+                  "WHERE k.keyword_name = %s ORDER BY date_time DESC LIMIT 5;"
+            val = (self.keywordsList.currentItem().text(),)
+            self.mySQL.execute(sql, val)
+            exists = self.mySQL.fetchall()
+            for row in exists:
+                y2.append(row[1])
+
+            # Stock Prices
+            sql = "SELECT stock.ticker, pot.PRICE, stock.current_price FROM stock " \
+                  "JOIN prices_over_time pot on stock.ticker = pot.ticker " \
+                  "WHERE stock.ticker = %s ORDER BY date_time DESC LIMIT 5;"
+            val = (self.stocksList.currentItem().text(),)
+            self.mySQL.execute(sql, val)
+            exists = self.mySQL.fetchall()
+            for row in exists:
+                y1.append(row[1])
 
 
-        self.MplWidget.canvas.axes.clear()
-        self.MplWidget.canvas.axes.plot(x1, y1)
-        self.MplWidget.canvas.axes.plot(x2, y2)
-        self.MplWidget.canvas.axes.legend((WELCOME.stockSelected, "FUCHSIA"), loc='upper right')
-        self.MplWidget.canvas.axes.set_ylabel("Y-AXIS")
-        self.MplWidget.canvas.axes.set_xlabel("X-AXIS")
-        self.MplWidget.canvas.axes.set_title("Comparisons")
-        self.MplWidget.canvas.draw()
+            self.MplWidget.canvas.axes.clear()
+            self.MplWidget.canvas.ax2.clear()
+            stocksLine = self.MplWidget.canvas.axes.plot(x1, y1, label=self.stocksList.currentItem().text(), color='blue')
+            keywordsLine = self.MplWidget.canvas.ax2.plot(x2, y2, label=self.keywordsList.currentItem().text(),
+                                                          color='orange')
+            lns = stocksLine + keywordsLine
+            labs = [line.get_label() for line in lns]
+            self.MplWidget.canvas.axes.legend(lns, labs, loc='upper left')
+            self.MplWidget.canvas.axes.set_ylabel("Price")
+            self.MplWidget.canvas.axes.set_xlabel("Last 5 Days")
+            self.MplWidget.canvas.axes.set_title("Comparisons")
+            self.MplWidget.canvas.ax2.set_ylabel("Number of Searches")
+
+            self.MplWidget.canvas.draw()
+
+    def loadStocksList(self):
+        sql = "SELECT * FROM stock"
+        self.mySQL.execute(sql)
+        exists = self.mySQL.fetchall()
+        for row in exists:
+            self.stocksList.addItem(row[0])
+
+    def loadKeywordList(self):
+        sql = "SELECT keyword_name FROM keyword"
+        self.mySQL.execute(sql)
+        exists = self.mySQL.fetchall()
+        for row in exists:
+            self.keywordsList.addItem(row[0])

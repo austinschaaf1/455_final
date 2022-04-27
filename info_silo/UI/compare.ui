@@ -79,6 +79,80 @@
      </rect>
     </property>
    </widget>
+   <widget class="QListWidget" name="stocksList">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>490</y>
+      <width>191</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="keywordsList">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>490</y>
+      <width>191</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="stocksLabel">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>460</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;</string>
+    </property>
+    <property name="text">
+     <string>Stocks</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="keywordsLabel">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>460</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: none;</string>
+    </property>
+    <property name="text">
+     <string>Keywords</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
  </widget>
  <customwidgets>
