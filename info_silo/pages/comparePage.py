@@ -29,7 +29,7 @@ class COMPARE(QDialog):  # INDEX = 2
         # self.update_graph()
         self.loadStocksList()
         self.loadKeywordList()
-
+        self.refreshButton.clicked.connect(self.refreshLists)
         self.stocksList.itemClicked.connect(self.update_graph)
         self.keywordsList.itemClicked.connect(self.update_graph)
 
@@ -58,7 +58,7 @@ class COMPARE(QDialog):  # INDEX = 2
             self.mySQL.execute(sql, val)
             exists = self.mySQL.fetchall()
             for row in exists:
-                y2.append(row[1])
+                y2.insert(0, row[1])
 
             # Stock Prices
             sql = "SELECT stock.ticker, pot.PRICE, stock.current_price FROM stock " \
@@ -68,25 +68,25 @@ class COMPARE(QDialog):  # INDEX = 2
             self.mySQL.execute(sql, val)
             exists = self.mySQL.fetchall()
             for row in exists:
-                y1.append(row[1])
-
+                y1.insert(0, row[1])
 
             self.MplWidget.canvas.axes.clear()
             self.MplWidget.canvas.ax2.clear()
-            stocksLine = self.MplWidget.canvas.axes.plot(x1, y1, label=self.stocksList.currentItem().text(), color='blue')
+            stocksLine = self.MplWidget.canvas.axes.plot(x1, y1, label=self.stocksList.currentItem().text(),
+                                                         color='blue')
             keywordsLine = self.MplWidget.canvas.ax2.plot(x2, y2, label=self.keywordsList.currentItem().text(),
                                                           color='orange')
             lns = stocksLine + keywordsLine
             labs = [line.get_label() for line in lns]
             self.MplWidget.canvas.axes.legend(lns, labs, loc='upper left')
-            self.MplWidget.canvas.axes.set_ylabel("Price")
+            self.MplWidget.canvas.axes.set_ylabel("Stock Price ($ USD)")
             self.MplWidget.canvas.axes.set_xlabel("Last 5 Days")
-            self.MplWidget.canvas.axes.set_title("Comparisons")
-            self.MplWidget.canvas.ax2.set_ylabel("Number of Searches")
-
+            self.MplWidget.canvas.axes.set_title("Stock Price VS Keyword Searches")
+            self.MplWidget.canvas.ax2.set_ylabel("Keyword (Number of Searches)")
             self.MplWidget.canvas.draw()
 
     def loadStocksList(self):
+        self.stocksList.clear()
         sql = "SELECT * FROM stock"
         self.mySQL.execute(sql)
         exists = self.mySQL.fetchall()
@@ -94,8 +94,13 @@ class COMPARE(QDialog):  # INDEX = 2
             self.stocksList.addItem(row[0])
 
     def loadKeywordList(self):
+        self.keywordsList.clear()
         sql = "SELECT keyword_name FROM keyword"
         self.mySQL.execute(sql)
         exists = self.mySQL.fetchall()
         for row in exists:
             self.keywordsList.addItem(row[0])
+
+    def refreshLists(self):
+        self.loadKeywordList()
+        self.loadStocksList()

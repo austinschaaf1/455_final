@@ -32,8 +32,7 @@ class WELCOME(QDialog):  # INDEX = 1
         self.keywordSearchButton.clicked.connect(self.goToKeywordSearch)
         self.loadStocksTable()
         self.loadKeywordTable()
-        self.stocksTable.cellClicked.connect(self.clickedStocksCell)
-        self.keywordsTable.cellClicked.connect(self.clickedKeywordCell)
+
 
     def setWidget(self, wid):
         # need to set up in order to get communication working
@@ -81,10 +80,3 @@ class WELCOME(QDialog):  # INDEX = 1
             self.keywordsTable.setItem(rowPosition, 0, QTableWidgetItem(row[0]))
             self.keywordsTable.setItem(rowPosition, 1, QTableWidgetItem(str(row[1])))
 
-    def clickedStocksCell(self, row, column):
-        item = self.stocksTable.item(row, column).text()
-        self.stockSelected = item
-
-    def clickedKeywordCell(self, row, column):
-        item = self.keywordsTable.item(row, column).text()
-        self.keywordSelected = item
