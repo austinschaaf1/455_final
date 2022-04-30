@@ -40,13 +40,14 @@ print("Connected to: ", db_connection.get_server_info())
 # Set up all windows
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
-login = LOGIN(mySQL, db_connection, widget)
-welcome = WELCOME(mySQL, db_connection, widget)
-compare = COMPARE(mySQL, db_connection, widget)
-create = CREATE(mySQL, db_connection, widget)
-keyword_manager = KEYWORD(mySQL, db_connection, widget)
-keywordSearch = SEARCH_KEYWORD(mySQL, db_connection, widget)
-stockSearch = SEARCH_STOCK(mySQL, db_connection, widget)
+user = []
+login = LOGIN(mySQL, db_connection, widget, user)
+welcome = WELCOME(mySQL, db_connection, widget, user)
+compare = COMPARE(mySQL, db_connection, widget, user)
+create = CREATE(mySQL, db_connection, widget, user)
+keyword_manager = KEYWORD(mySQL, db_connection, widget, user)
+keywordSearch = SEARCH_KEYWORD(mySQL, db_connection, widget, user)
+stockSearch = SEARCH_STOCK(mySQL, db_connection, widget, user)
 
 # add widgets for page transitions
 widget.addWidget(login)

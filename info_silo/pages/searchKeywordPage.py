@@ -18,11 +18,12 @@ from pprint import pprint
 
 
 class SEARCH_KEYWORD(QDialog):  # INDEX = 5
-    def __init__(self, mySQL, db, widget):
+    def __init__(self, mySQL, db, widget, user):
         super(SEARCH_KEYWORD, self).__init__()
         self.mySQL = mySQL
         self.db = db
         self.widget = widget
+        self.user = user
         try:
             loadUi("UI\keyword_search.ui", self)
         except:
@@ -39,12 +40,12 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
 
     def goToManager(self):
         # Return to the keyword manager
-        screen = KEYWORD(self.mySQL, self.db, self.widget)
+        screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(4)
 
     def gotoWelcome(self):
-        screen = KEYWORD(self.mySQL, self.db, self.widget)
+        screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
         
@@ -68,7 +69,8 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
         else:
             ###keyword found in database
             ########need to change to have User ID
-            userID = 5 ######Chris Change
+
+            userID = self.user[0][0]
 
             ###Determine if keyword exists inside the users interests so its not readded
             sql = "SELECT * FROM user_interest WHERE user_id=%s AND keyword_key=%s"
@@ -95,7 +97,7 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
     def requestKeyword(self):
         ####Adds the keyword to the keyword manager page
         ########need to change to have User ID
-        userID = 5 ######Chris Change
+        userID = self.user[0][0]
 
         #determine if membership level is high enough
         sql = "SELECT * FROM user_data WHERE user_id=%s"

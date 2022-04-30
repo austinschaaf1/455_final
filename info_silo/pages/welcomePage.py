@@ -2,7 +2,7 @@ import sys
 
 import pyqtgraph.examples
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMainWindow, QTableWidgetItem
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMainWindow, QTableWidgetItem, QMessageBox
 from PyQt5.uic import loadUi
 import mysql.connector as mysql
 from PyQt5.uic.properties import QtGui
@@ -17,11 +17,12 @@ class WELCOME(QDialog):  # INDEX = 1
     keywordSelected = None
     stockSelected = None
 
-    def __init__(self, mySQL, db, widget):
+    def __init__(self, mySQL, db, widget, user):
         super(WELCOME, self).__init__()
         self.mySQL = mySQL
         self.db = db
         self.widget = widget
+        self.user = user
         try:
             loadUi("UI\welcome.ui", self)
         except:
@@ -32,6 +33,7 @@ class WELCOME(QDialog):  # INDEX = 1
         self.keywordSearchButton.clicked.connect(self.goToKeywordSearch)
         self.loadStocksTable()
         self.loadKeywordTable()
+        # testing
 
 
     def setWidget(self, wid):
@@ -39,22 +41,24 @@ class WELCOME(QDialog):  # INDEX = 1
         self.widget = wid
 
     def gotoScreen2(self):
-        screen = WELCOME(self.mySQL, self.db, self.widget)
+        if len(self.user) > 0:
+            self.user.clear()
+        screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(0)
 
     def gotoCompare(self):
-        screen = WELCOME(self.mySQL, self.db, self.widget)
+        screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(2)
 
     def goToStockSearch(self):
-        screen = WELCOME(self.mySQL, self.db, self.widget)
+        screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(6)
 
     def goToKeywordSearch(self):
-        screen = WELCOME(self.mySQL, self.db, self.widget)
+        screen = WELCOME(self.mySQL, self.db, self.widget,self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(5)
 

@@ -17,11 +17,12 @@ import yfinance as yf
 import pandas as pd  
 
 class SEARCH_STOCK(QDialog):  # INDEX = 6
-    def __init__(self, mySQL, db,widget):
+    def __init__(self, mySQL, db,widget, user):
         super(SEARCH_STOCK, self).__init__()
         self.mySQL = mySQL
         self.db = db
         self.widget = widget
+        self.user = user
         try:
             loadUi("UI\stock_search.ui", self)
         except:
@@ -34,14 +35,14 @@ class SEARCH_STOCK(QDialog):  # INDEX = 6
         self.widget = wid
 
     def gotoWelcome(self):
-        screen = WELCOME(self.mySQL, self.db,self.widget)
+        screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
 
     def addStockToFav(self):
         # Determine if stock exists or not if it does add it to users interests and give conformation message
         
-        userID = 5 ######Chris Change
+        userID = self.user[0][0]
 
         #determine if stock already is in database
         ticker = self.EnterTickerInput.text()

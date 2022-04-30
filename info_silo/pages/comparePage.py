@@ -16,11 +16,12 @@ from pages.welcomePage import WELCOME
 
 
 class COMPARE(QDialog):  # INDEX = 2
-    def __init__(self, mySQL, db, widget):
+    def __init__(self, mySQL, db, widget, user):
         super(COMPARE, self).__init__()
         self.mySQL = mySQL
         self.db = db
         self.widget = widget
+        self.user = user
         try:
             loadUi("UI\compare.ui", self)
         except:
@@ -38,7 +39,7 @@ class COMPARE(QDialog):  # INDEX = 2
         self.widget = wid
 
     def gotoWelcome(self):
-        screen = COMPARE(self.mySQL, self.db, self.widget)
+        screen = COMPARE(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
 

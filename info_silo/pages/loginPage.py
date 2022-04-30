@@ -2,8 +2,10 @@ import sys
 
 import pyqtgraph.examples
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMainWindow
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMainWindow, QLineEdit, QMessageBox
 from PyQt5.uic import loadUi
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 import mysql.connector as mysql
 
 from matplotlib.backends.backend_qt5agg import (NavigationToolbar2QT as NavigationToolbar)
@@ -13,17 +15,19 @@ import random
 
 
 class LOGIN(QMainWindow):  # INDEX = 0
-    def __init__(self, mySQL, db, widget):
+    def __init__(self, mySQL, db, widget, user):
         super(LOGIN, self).__init__()
         self.mySQL = mySQL
         self.db = db
         self.widget = widget
+        self.user = user
         try:
             loadUi("UI\login.ui", self)
         except:
             loadUi("UI/login.ui", self)
         self.loginButton.clicked.connect(self.gotoScreen2)
         self.createAccountButton.clicked.connect(self.gotoCreateAccount)
+
         # self.keywordManagerButton.clicked.connect(self.gotoKeywordManager)
 
     def setWidget(self, wid):
@@ -31,6 +35,25 @@ class LOGIN(QMainWindow):  # INDEX = 0
         self.widget = wid
 
     def gotoScreen2(self):
+        email = self.emailText.text()
+        password = self.passwordText.text()
+        sql = "SELECT user_id from logins WHERE email = %s AND user_password = %s"
+        params = (email, password)    # Protect against SQL injection
+        self.mySQL.execute(sql, params)
+        result = self.mySQL.fetchone()
+        user_id = result
+        self.emailText.clear()
+        self.passwordText.clear()
+        if not user_id:
+            # print("Invalid Login information. Try again")
+            msg = QMessageBox()
+            msg.setWindowTitle("Invalid Login!")
+            msg.setText("Email and password do not match.\nTry again!")
+            msg.exec_()
+            return
+        self.user.append(user_id)
+        # print("User id: %d" % user_id)
+
         self.widget.setCurrentIndex(1)
 
     def gotoCreateAccount(self):

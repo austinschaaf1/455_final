@@ -18,11 +18,12 @@ from datetime import date, timedelta
 
 
 class KEYWORD(QDialog):  # INDEX = 4
-    def __init__(self, mySQL, db, widget):
+    def __init__(self, mySQL, db, widget, user):
         super(KEYWORD, self).__init__()
         self.mySQL = mySQL
         self.db = db
         self.widget = widget
+        self.user = user
         try:
             loadUi("UI\keyword_manager.ui", self)
         except:
@@ -38,7 +39,7 @@ class KEYWORD(QDialog):  # INDEX = 4
         self.widget = wid
 
     def gotoWelcome(self):
-        screen = WELCOME(self.mySQL, self.db, self.widget)
+        screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
 
