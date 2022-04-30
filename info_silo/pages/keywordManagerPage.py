@@ -105,7 +105,7 @@ class KEYWORD(QDialog):  # INDEX = 4
             data1 = []
             data1.append(keywordInfo[0][1])
             list1 = pytrend.get_historical_interest(data1, year_start=2022, month_start=4, day_start=1, hour_start=0, year_end=2022, month_end=4, day_end=29, hour_end=0, cat=0, geo='', gprop='', sleep=0)
-            my_date = date(2022, 1, 1)
+            my_date = date(2022, 4, 1)
 
             for i in range(30):
                 ####Add a month worth of searches 
