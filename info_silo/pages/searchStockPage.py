@@ -63,7 +63,7 @@ class SEARCH_STOCK(QDialog):  # INDEX = 6
                 stockList = [ticker]
                 msft = yf.Ticker(stockList[0])
                 priceNow = msft.info['regularMarketPrice']
-                price = msft.history(start="2022-01-01",end="2022-01-29")
+                price = msft.history(start="2022-04-01",end="2022-04-29")
 
                 ###insert stock info into stock page
                 sql = "INSERT INTO stock (ticker, current_price) VALUES (%s, %s)"
