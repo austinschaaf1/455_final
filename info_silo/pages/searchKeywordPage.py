@@ -29,6 +29,7 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
         except:
             loadUi("UI/keyword_search.ui", self)
         # button clicks
+
         self.goToKeywordManagerButton.clicked.connect(self.goToManager)
         self.homeButton.clicked.connect(self.gotoWelcome)
         self.addKeywordButton.clicked.connect(self.addKeywordToFav)
@@ -40,9 +41,23 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
 
     def goToManager(self):
         # Return to the keyword manager
-        screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
-        self.widget.addWidget(screen)
-        self.widget.setCurrentIndex(4)
+        sql = "SELECT * FROM keyword_manager WHERE user_info= %s"
+        try:
+            val = (self.user[0][0],)
+            self.mySQL.execute(sql, val)
+            isManager = self.mySQL.fetchall()
+
+            if len(isManager) > 0:
+                screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
+                self.widget.addWidget(screen)
+                self.widget.setCurrentIndex(4)
+            else:
+                message = "You must be a keyword manager to access this page!"
+                self.success_label.setText(message)
+                self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+        except:
+            pass
+
 
     def gotoWelcome(self):
         screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
