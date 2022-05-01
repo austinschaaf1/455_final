@@ -13,6 +13,10 @@ from mplwidget import MplWidget
 import numpy as np
 import random
 
+import __main__
+
+
+
 
 class LOGIN(QMainWindow):  # INDEX = 0
     def __init__(self, mySQL, db, widget, user):
@@ -28,6 +32,14 @@ class LOGIN(QMainWindow):  # INDEX = 0
         self.loginButton.clicked.connect(self.gotoScreen2)
         self.createAccountButton.clicked.connect(self.gotoCreateAccount)
 
+        ## Quick Logins
+        # self.dimButton.setVisible(False)
+        # self.chrisButton.setVisible(False)
+        # self.austinButton.setVisible(False)
+        self.dimButton.clicked.connect(self.dimLogin)
+        self.austinButton.clicked.connect(self.austinLogin)
+        self.chrisButton.clicked.connect(self.chrisLogin)
+
         # self.keywordManagerButton.clicked.connect(self.gotoKeywordManager)
 
     def setWidget(self, wid):
@@ -38,7 +50,7 @@ class LOGIN(QMainWindow):  # INDEX = 0
         email = self.emailText.text()
         password = self.passwordText.text()
         sql = "SELECT user_id from logins WHERE email = %s AND user_password = %s"
-        params = (email, password)    # Protect against SQL injection
+        params = (email, password)  # Protect against SQL injection
         self.mySQL.execute(sql, params)
         result = self.mySQL.fetchone()
         user_id = result
@@ -61,3 +73,30 @@ class LOGIN(QMainWindow):  # INDEX = 0
 
     def gotoKeywordManager(self):
         self.widget.setCurrentIndex(4)
+
+    def austinLogin(self):
+        email = self.emailText.text()
+        password = self.passwordText.text()
+        user_id = (5, 0)
+        self.emailText.clear()
+        self.passwordText.clear()
+        self.user.append(user_id)
+        self.widget.setCurrentIndex(1)
+
+    def chrisLogin(self):
+        email = self.emailText.text()
+        password = self.passwordText.text()
+        user_id = (6, 0)
+        self.emailText.clear()
+        self.passwordText.clear()
+        self.user.append(user_id)
+        self.widget.setCurrentIndex(1)
+
+    def dimLogin(self):
+        email = self.emailText.text()
+        password = self.passwordText.text()
+        user_id = (7, 0)
+        self.emailText.clear()
+        self.passwordText.clear()
+        self.user.append(user_id)
+        self.widget.setCurrentIndex(1)

@@ -2,6 +2,7 @@ import sys
 
 import pyqtgraph.examples
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMainWindow
 from PyQt5.uic import loadUi
 import mysql.connector as mysql
@@ -29,7 +30,6 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
         except:
             loadUi("UI/keyword_search.ui", self)
         # button clicks
-
         self.goToKeywordManagerButton.clicked.connect(self.goToManager)
         self.homeButton.clicked.connect(self.gotoWelcome)
         self.addKeywordButton.clicked.connect(self.addKeywordToFav)
@@ -48,6 +48,7 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
             isManager = self.mySQL.fetchall()
 
             if len(isManager) > 0:
+                self.success_label.setText("")
                 screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
                 self.widget.addWidget(screen)
                 self.widget.setCurrentIndex(4)
@@ -55,11 +56,14 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
                 message = "You must be a keyword manager to access this page!"
                 self.success_label.setText(message)
                 self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+                # QTimer(self).connect(self.success_label.setText("TEST"))
+                # QTimer.start(1000)
         except:
             pass
 
 
     def gotoWelcome(self):
+        self.success_label.setText("")
         screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)

@@ -289,14 +289,34 @@
     </column>
     <column>
      <property name="text">
-      <string>Price</string>
+      <string>Price ($)</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Change</string>
+      <string>Change ($)</string>
      </property>
     </column>
+   </widget>
+   <widget class="QPushButton" name="loadButton">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>110</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.813, y2:0.880455, stop:0 rgba(255, 170, 255, 255), stop:0.153409 rgba(205, 156, 255, 255), stop:0.852273 rgba(170, 85, 255, 255));
+	color: rgb(245, 235, 255);
+	border-radius: 10px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Load</string>
+    </property>
    </widget>
   </widget>
  </widget>

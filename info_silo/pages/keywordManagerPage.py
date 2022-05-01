@@ -39,6 +39,7 @@ class KEYWORD(QDialog):  # INDEX = 4
         self.widget = wid
 
     def gotoWelcome(self):
+        self.success_label.setText("")
         screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
