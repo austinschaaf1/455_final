@@ -153,7 +153,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="refreshButton">
+   <widget class="QPushButton" name="loadButton">
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -170,7 +170,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>Refresh Lists</string>
+     <string>Load</string>
     </property>
    </widget>
   </widget>

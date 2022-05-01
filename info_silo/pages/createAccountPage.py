@@ -23,15 +23,11 @@ class CREATE(QDialog):  # INDEX = 3
             loadUi("UI\create_account.ui", self)
         except:
             loadUi("UI/create_account.ui", self)
-        self.welcomeButton.clicked.connect(self.gotoWelcome)
+        self.returnToLoginButton.clicked.connect(self.gotoLogin)
         self.create_account.clicked.connect(self.createAccount)
     def setWidget(self, wid):
         #need to set up in order to get communication working
         self.widget = wid
-    def gotoWelcome(self):
-        screen = CREATE(self.mySQL, self.db, self.widget, self.user)
-        self.widget.addWidget(screen)
-        self.widget.setCurrentIndex(1)
 
     def gotoLogin(self):
         screen = CREATE(self.mySQL, self.db, self.widget, self.user)
