@@ -211,7 +211,7 @@
           <rect>
            <x>160</x>
            <y>180</y>
-           <width>81</width>
+           <width>181</width>
            <height>31</height>
           </rect>
          </property>
@@ -219,7 +219,7 @@
           <string notr="true">background: none;</string>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#00000f;&quot;&gt;Birthday&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#00000f;&quot;&gt;Birthday &lt;/span&gt;&lt;span style=&quot; font-size:11pt; color:#00000f;&quot;&gt;(yyyy-mm-dd)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_5">
