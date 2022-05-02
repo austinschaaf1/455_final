@@ -23,6 +23,7 @@ class CREATE(QDialog):  # INDEX = 3
             loadUi("UI\create_account.ui", self)
         except:
             loadUi("UI/create_account.ui", self)
+        self.clearText()
         self.returnToLoginButton.clicked.connect(self.gotoLogin)
         self.create_account.clicked.connect(self.createAccount)
     def setWidget(self, wid):
@@ -33,6 +34,14 @@ class CREATE(QDialog):  # INDEX = 3
         screen = CREATE(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(0)
+
+    def clearText(self):
+        self.emailInput.clear()
+        self.nameInput.clear()
+        self.birthdayInput.clear()
+        self.membership_input.clear()
+        self.pass_input.clear()
+        self.confirm_input.clear()
 
     def createAccount(self):
         email = self.emailInput.text()
@@ -45,6 +54,19 @@ class CREATE(QDialog):  # INDEX = 3
             bday = self.birthdayInput.text()
             memLevel = self.membership_input.text()
             password = self.pass_input.text()
+            confirmPassword = self.confirm_input.text()
+            if name == "" or email == "" or bday == "" or memLevel == "" or password == "" or confirmPassword =="":
+                msg = QMessageBox()
+                msg.setWindowTitle("Blank Field")
+                msg.setText("Please enter a value for all fields")
+                msg.exec_()
+                return
+            if password != confirmPassword:
+                msg = QMessageBox()
+                msg.setWindowTitle("Passwords do not match")
+                msg.setText("Passwords do not match.\nTry again!")
+                return
+
             sql = "INSERT INTO user_data (user_name, bday, membership_level) VALUES (%s, %s,%s);"
             val = (name, bday, memLevel)
             self.mySQL.execute(sql, val)
@@ -55,6 +77,7 @@ class CREATE(QDialog):  # INDEX = 3
             val = (password, email)
             self.mySQL.execute(sql, val)
             self.db.commit()
+            self.clearText()
             msg = QMessageBox()
             msg.setWindowTitle("Successful Account Creation")
             msg.setText("Account successfully created.\nPlease login to continue.")
@@ -62,6 +85,7 @@ class CREATE(QDialog):  # INDEX = 3
             self.gotoLogin()
             pass
         else:
+            self.clearText()
             msg = QMessageBox()
             msg.setWindowTitle("Account already exists!")
             msg.setText("An account with the provided email address already exists.\nPlease login to continue")
