@@ -49,6 +49,8 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
 
             if len(isManager) > 0:
                 self.success_label.setText("")
+                self.enterKeywordInput.clear()
+                self.requestKeywordInput.clear()
                 screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
                 self.widget.addWidget(screen)
                 self.widget.setCurrentIndex(4)
@@ -64,6 +66,8 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
 
     def gotoWelcome(self):
         self.success_label.setText("")
+        self.enterKeywordInput.clear()
+        self.requestKeywordInput.clear()
         screen = KEYWORD(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
@@ -112,6 +116,8 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
                 message = addKeyWordInput + " is already in your interests!"
                 self.success_label.setText(message)
                 self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+        self.enterKeywordInput.clear()
+        self.requestKeywordInput.clear()
         
     def requestKeyword(self):
         ####Adds the keyword to the keyword manager page
@@ -183,3 +189,5 @@ class SEARCH_KEYWORD(QDialog):  # INDEX = 5
             message = "Please purchase paid version to request keyword"
             self.success_label.setText(message)
             self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+        self.enterKeywordInput.clear()
+        self.requestKeywordInput.clear()

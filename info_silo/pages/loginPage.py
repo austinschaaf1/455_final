@@ -33,9 +33,9 @@ class LOGIN(QMainWindow):  # INDEX = 0
         self.createAccountButton.clicked.connect(self.gotoCreateAccount)
 
         ## Quick Logins
-        # self.dimButton.setVisible(False)
-        # self.chrisButton.setVisible(False)
-        # self.austinButton.setVisible(False)
+        self.dimButton.setVisible(False)
+        self.chrisButton.setVisible(False)
+        self.austinButton.setVisible(False)
         self.dimButton.clicked.connect(self.dimLogin)
         self.austinButton.clicked.connect(self.austinLogin)
         self.chrisButton.clicked.connect(self.chrisLogin)
