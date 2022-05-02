@@ -36,6 +36,7 @@ class SEARCH_STOCK(QDialog):  # INDEX = 6
 
     def gotoWelcome(self):
         self.success_label.setText("")
+        self.EnterTickerInput.clear()
         screen = WELCOME(self.mySQL, self.db, self.widget, self.user)
         self.widget.addWidget(screen)
         self.widget.setCurrentIndex(1)
@@ -140,3 +141,4 @@ class SEARCH_STOCK(QDialog):  # INDEX = 6
                 message = ticker + " is already in your interests"
                 self.success_label.setText(message)
                 self.success_label.setStyleSheet("color:blue;background: none;font-size:25px;font-weight: bold;")
+        self.EnterTickerInput.clear()
